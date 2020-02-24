@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>=2.1.0'
 
-  s.add_dependency 'acme-client', '~>0.6.2'
+  s.add_dependency 'acme-client', '~>2.0.5'
   s.add_dependency 'rails', '>=4.2'
   s.add_dependency 'nokogiri', '~>1.8.1'
 
