@@ -3,7 +3,7 @@ require 'test_helper'
 class AcmePluginTest < ActiveSupport::TestCase
   ACME_VERSION = 'v0.6.2'.freeze
   ACME_USER_AGENT = "Acme::Client #{ACME_VERSION} (https://github.com/unixcharles/acme-client)".freeze
-  ENDPOINT_URL = 'https://acme-staging.api.letsencrypt.org'.freeze
+  ENDPOINT_URL = 'https://acme-staging-v02.api.letsencrypt.org/directory'.freeze
   API_URL = "#{ENDPOINT_URL}/acme".freeze
   PRIVATE_KEY = %(
 -----BEGIN RSA PRIVATE KEY-----
@@ -129,7 +129,7 @@ ZK/V50gulSGNn7WngWDJRRv5KaO27RGnpH9P4lOW3iTbHlq+AVvyoflvKeyFEEFb
 
   test 'register with text based private key' do
     cg = AcmePlugin::CertGenerator.new(private_key: PRIVATE_KEY,
-                                       endpoint: ENDPOINT_URL,
+                                       directory: ENDPOINT_URL,
                                        domain: 'example.com',
                                        email: 'foobarbaz@example.com')
     assert !cg.nil?
@@ -174,7 +174,7 @@ ZK/V50gulSGNn7WngWDJRRv5KaO27RGnpH9P4lOW3iTbHlq+AVvyoflvKeyFEEFb
 
   test 'register' do
     cg = AcmePlugin::CertGenerator.new(private_key: 'key/test_keyfile_4096.pem',
-                                       endpoint: ENDPOINT_URL,
+                                       directory: ENDPOINT_URL,
                                        domain: 'example.com',
                                        email: 'foobarbaz@example.com')
     assert !cg.nil?
@@ -219,7 +219,7 @@ ZK/V50gulSGNn7WngWDJRRv5KaO27RGnpH9P4lOW3iTbHlq+AVvyoflvKeyFEEFb
 
   test 'register_with_privkey_in_db' do
     cg = AcmePlugin::CertGenerator.new(private_key_in_db: true,
-                                       endpoint: ENDPOINT_URL,
+                                       directory: ENDPOINT_URL,
                                        domain: 'example.com',
                                        email: 'foobarbaz@example.com')
     assert !cg.nil?
@@ -265,7 +265,7 @@ ZK/V50gulSGNn7WngWDJRRv5KaO27RGnpH9P4lOW3iTbHlq+AVvyoflvKeyFEEFb
 
   test 'register_and_authorize' do
     cg = AcmePlugin::CertGenerator.new(private_key: 'key/test_keyfile_4096.pem',
-                                       endpoint: ENDPOINT_URL,
+                                       directory: ENDPOINT_URL,
                                        domain: 'example.com',
                                        email: 'foobarbaz@example.com')
     assert !cg.nil?

@@ -49,7 +49,7 @@ module AcmePlugin
     end
 
     def client
-      @client ||= Acme::Client.new(private_key: private_key, endpoint: @options[:endpoint])
+      @client ||= Acme::Client.new(private_key: private_key, directory: @options[:directory])
     end
 
     def private_key
